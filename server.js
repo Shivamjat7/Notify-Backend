@@ -1,5 +1,5 @@
 require('dotenv').config();
-require('./database/db');
+const connectToMongo = require('./database/db');
 const studentRoute = require("./routes/Student");
 const authRoute = require('./routes/Auth');
 const emailRoute = require('./routes/email');
@@ -26,5 +26,8 @@ app.use("/api",emailRoute);
 app.use("/api",subjectRoute);
 
 
-
-app.listen(PORT,'0.0.0.0',()=>console.log(`app is listing on port ${PORT}`));
+connectToMongo().then(() => {
+  app.listen(PORT, '0.0.0.0', () =>
+    console.log(`🚀 Server running on port ${PORT}`)
+  );
+});

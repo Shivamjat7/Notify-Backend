@@ -1,7 +1,7 @@
-require('dotenv').config();
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const connectToMONGO = async () => {
+const connectToMongo = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
@@ -10,8 +10,8 @@ const connectToMONGO = async () => {
     console.log("✅ Connected to MongoDB");
   } catch (err) {
     console.error("❌ MongoDB connection error:", err.message);
-    process.exit(1); // Exit if connection fails
+    process.exit(1);
   }
 };
 
-module.exports = connectToMONGO;
+module.exports = connectToMongo;
