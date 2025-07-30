@@ -7,6 +7,9 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  profileImage:{
+    type:String
+  },
 
   email: {
     type: String,
@@ -47,6 +50,21 @@ const studentSchema = new mongoose.Schema({
 
   lastAbsentMailDate: {
     type: String // "YYYY-MM-DD" to prevent duplicate daily emails
+  },
+
+  // OTP verification fields
+  isEmailVerified: {
+    type: Boolean,
+    default: false
+  },
+
+  otp: {
+    code: String,
+    expiresAt: Date
+  },
+
+  lastOTPSent: {
+    type: Date
   }
 });
 

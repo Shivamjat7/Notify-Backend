@@ -63,12 +63,12 @@ router.get("/subject/get/:day", auth, async (req, res) => {
       [`schedule.${day}`]: { $exists: true },
     });
 
-    // const today = new Date().toISOString().slice(0, 10);
+    const today = new Date().toISOString().slice(0, 10);
 
-    // const filteredSubjects = subjects.filter((s) => {
-    //   const attendanceArray = student.attendance?.get(s.name) || [];
-    //   return !attendanceArray.some((a) => a.date === today);
-    // });
+    const filteredSubjects = subjects.filter((s) => {
+      const attendanceArray = student.attendance?.get(s.name) || [];
+      return !attendanceArray.some((a) => a.date === today);
+    });
 
     const formatted = subjects.map((subj) => ({
       id: subj._id,
